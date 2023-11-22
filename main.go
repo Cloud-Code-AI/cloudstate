@@ -3,50 +3,49 @@ package main
 import (
 	"flag"
 	"fmt"
-	// Import necessary SDKs for cloud services
 )
 
 func main() {
 	// Define and parse command-line flags
 	cloudProvider := flag.String("provider", "", "The cloud provider to interact with (e.g., 'aws', 'gcp', 'azure')")
-	operation := flag.String("operation", "", "The operation to perform (e.g., 'list', 'create', 'delete')")
-	resourceType := flag.String("resource", "", "The type of resource to manage (e.g., 'vm', 'storage', 'network')")
+	resourceType := flag.String("resource", "", "The type of resource to fetch (e.g., 'vm', 'storage', 'network')")
+	region := flag.String("region", "", "The region for which the data should be fetched (e.g 'us-east-1', 'ap-south-1')")
 	flag.Parse()
 
 	// Basic input validation
-	if *cloudProvider == "" || *operation == "" || *resourceType == "" {
+	if *cloudProvider == "" || *resourceType == "" {
 		fmt.Println("Missing required arguments")
 		flag.Usage()
 		return
 	}
 
-	// Handle the cloud operations based on the input
+	// Handle the cloud region based on the input
 	switch *cloudProvider {
 	case "aws":
-		handleAWS(*operation, *resourceType)
+		handleAWS(*region, *resourceType)
 	case "gcp":
-		handleGCP(*operation, *resourceType)
+		handleGCP(*region, *resourceType)
 	case "azure":
-		handleAzure(*operation, *resourceType)
+		handleAzure(*region, *resourceType)
 	default:
 		fmt.Println("Unsupported cloud provider")
 	}
 }
 
-func handleAWS(operation, resourceType string) {
+func handleAWS(region, resourceType string) {
 	// Implement AWS-specific logic here
-	fmt.Printf("Handling AWS operation: %s on resource: %s\n", operation, resourceType)
-	// Example: Call AWS SDK methods based on operation and resourceType
+	fmt.Printf("Handling AWS region: %s on resource: %s\n", region, resourceType)
+
 }
 
-func handleGCP(operation, resourceType string) {
+func handleGCP(region, resourceType string) {
 	// Implement GCP-specific logic here
-	fmt.Printf("Handling GCP operation: %s on resource: %s\n", operation, resourceType)
-	// Example: Call GCP SDK methods based on operation and resourceType
+	fmt.Printf("Handling GCP region: %s on resource: %s\n", region, resourceType)
+
 }
 
-func handleAzure(operation, resourceType string) {
+func handleAzure(region, resourceType string) {
 	// Implement Azure-specific logic here
-	fmt.Printf("Handling Azure operation: %s on resource: %s\n", operation, resourceType)
-	// Example: Call Azure SDK methods based on operation and resourceType
+	fmt.Printf("Handling Azure region: %s on resource: %s\n", region, resourceType)
+
 }
