@@ -1,0 +1,26 @@
+name: Go Build & Test
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ['*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.17'  # Use the version of Go in your project
+    
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
