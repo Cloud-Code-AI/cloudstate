@@ -17,3 +17,9 @@ func InitSess() *session.Session {
 
 	return sess
 }
+
+func StoreData(services []string) {
+	// for _, service := range services {
+	// 	fetchService()
+	// }
+}
