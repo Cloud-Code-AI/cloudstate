@@ -36,8 +36,7 @@ func main() {
 
 func handleAWS(region, resourceType string) {
 	// Implement AWS-specific logic here
-	sess := awshandler.InitSess()
-	awshandler.S3ListBucketss(sess)
+	awshandler.StoreAWSData()
 	fmt.Printf("Handling AWS region: %s on resource: %s\n", region, resourceType)
 
 }

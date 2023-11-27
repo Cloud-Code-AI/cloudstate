@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
-func InitSess() *session.Session {
+func initSess() *session.Session {
 	// Initialize a session in us-west-2 that the SDK will use to load
 	// credentials from the shared credentials file ~/.aws/credentials.
 	sess, err := session.NewSession(&aws.Config{
@@ -19,8 +19,11 @@ func InitSess() *session.Session {
 	return sess
 }
 
-func StoreData(services []string) {
-	// for _, service := range services {
-	// 	fetchService()
-	// }
+func StoreAWSData() {
+	sess := initSess()
+	// Get all the S3 bucket data
+	S3ListBucketss(sess)
+	// Get all the lambda functions
+	ListLambdaFns(sess)
+
 }
