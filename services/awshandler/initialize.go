@@ -17,6 +17,6 @@ func StoreAWSData() {
 	// Get all the S3 bucket data
 	S3ListBucketss(sdkConfig)
 	// Get all the lambda functions
-	// ListLambdaFns(sdkConfig)
+	ListLambdaFns(sdkConfig)
 
 }
