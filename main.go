@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+
+	"github.com/Cloud-Code-AI/cloudstate/services/awshandler"
 )
 
 func main() {
@@ -13,7 +15,7 @@ func main() {
 	flag.Parse()
 
 	// Basic input validation
-	if *cloudProvider == "" || *resourceType == "" {
+	if *cloudProvider == "" || *region == "" {
 		fmt.Println("Missing required arguments")
 		flag.Usage()
 		return
@@ -34,6 +36,8 @@ func main() {
 
 func handleAWS(region, resourceType string) {
 	// Implement AWS-specific logic here
+	sess := awshandler.InitSess()
+	awshandler.S3ListBucketss(sess)
 	fmt.Printf("Handling AWS region: %s on resource: %s\n", region, resourceType)
 
 }
