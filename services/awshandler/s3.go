@@ -36,7 +36,7 @@ func S3ListBucketss(sdkConfig aws.Config) {
 		Buckets: result.Buckets,
 	}
 
-	filepath := parentpath + *&sdkConfig.Region + jsonpath
+	filepath := parentpath + sdkConfig.Region + jsonpath
 
 	err = utils.WriteJSONToFile(filepath, output)
 	if err != nil {

@@ -18,5 +18,7 @@ func StoreAWSData() {
 	S3ListBucketss(sdkConfig)
 	// Get all the lambda functions
 	ListLambdaFns(sdkConfig)
+	// Get all dynamodb tables
+	DynamoDBListFn(sdkConfig)
 
 }
