@@ -20,5 +20,7 @@ func StoreAWSData() {
 	ListLambdaFns(sdkConfig)
 	// Get all dynamodb tables
 	DynamoDBListFn(sdkConfig)
+	// Get EC2 Instance info
+	ListEc2Fn(sdkConfig)
 
 }
