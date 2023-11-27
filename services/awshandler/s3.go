@@ -13,7 +13,8 @@ type s3Buckets struct {
 }
 
 const (
-	filepath = "output/s3/buckets.json"
+	jsonpath   = "/s3/buckets.json"
+	parentpath = "output/"
 )
 
 // Gets all the files from s3 for a given regions and
@@ -30,6 +31,8 @@ func S3ListBucketss(sess *session.Session) {
 	output := s3Buckets{
 		Buckets: result.Buckets,
 	}
+
+	filepath := parentpath + *sess.Config.Region + jsonpath
 
 	err = utils.WriteJSONToFile(filepath, output)
 	if err != nil {
