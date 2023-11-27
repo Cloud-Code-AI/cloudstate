@@ -1,6 +1,7 @@
 package awshandler
 
 import (
+	"github.com/Cloud-Code-AI/cloudstate/services/utils"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 )
@@ -12,7 +13,7 @@ func InitSess() *session.Session {
 		Region: aws.String("us-west-2")},
 	)
 	if err != nil {
-		exitErrorf("Unable to create session, %v", err)
+		utils.ExitErrorf("Unable to create session, %v", err)
 	}
 
 	return sess

@@ -2,31 +2,38 @@ package awshandler
 
 import (
 	"fmt"
-	"os"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/Cloud-Code-AI/cloudstate/services/utils"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
+type s3Buckets struct {
+	Buckets []*s3.Bucket `json:"Buckets"`
+}
+
+const (
+	filepath = "output/s3/buckets.json"
+)
+
+// Gets all the files from s3 for a given regions and
+// stores the results in output/s3/buckets.json file
 func S3ListBucketss(sess *session.Session) {
 	// Create S3 service client
 	svc := s3.New(sess)
 
 	result, err := svc.ListBuckets(nil)
 	if err != nil {
-		exitErrorf("Unable to list buckets, %v", err)
+		utils.ExitErrorf("Unable to list buckets, %v", err)
 	}
 
-	fmt.Println("Buckets:")
-
-	for _, b := range result.Buckets {
-		fmt.Printf("* %s created on %s\n",
-			aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+	output := s3Buckets{
+		Buckets: result.Buckets,
 	}
-}
 
-func exitErrorf(msg string, args ...interface{}) {
-	fmt.Fprintf(os.Stderr, msg+"\n", args...)
-	os.Exit(1)
+	err = utils.WriteJSONToFile(filepath, output)
+	if err != nil {
+		fmt.Println("Error writing S3 bucket lists")
+	}
+
 }
