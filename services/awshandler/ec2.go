@@ -15,8 +15,8 @@ type ec2List struct {
 	Instances []types.Instance `json:"Instances"`
 }
 
-// Gets all the lambda functions for a given regions and
-// stores the results in output/{region}/lambda/functions.json file
+// Gets all the EC2 instance for a given regions and
+// stores the results in output/{region}/ec2/instances.json file
 func ListEc2Fn(sdkConfig aws.Config) {
 	const maxItems = 50
 
