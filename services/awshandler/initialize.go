@@ -22,5 +22,7 @@ func StoreAWSData() {
 	DynamoDBListFn(sdkConfig)
 	// Get EC2 Instance info
 	ListEc2Fn(sdkConfig)
+	// Get Cloudfront info
+	CloudfrontListFn(sdkConfig)
 
 }
