@@ -42,5 +42,5 @@ We welcome contributions from the community! If you're interested in contributin
 CloudState is released under the [MIT License](/LICENSE). Feel free to use, modify, and distribute it as part of your projects.
 
 ### Stay Connected:
-For updates, follow us on [Github](https://github.com/Cloud-Code-AI) and join our community on [Discord](https://discord.gg/)tEPMDTxX9K.
+For updates, follow us on [Github](https://github.com/Cloud-Code-AI) and join our community on [Discord](https://discord.gg/tEPMDTxX9K)
 
