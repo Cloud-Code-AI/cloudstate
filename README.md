@@ -11,12 +11,36 @@ CloudState is an innovative open-source tool designed to empower developers, sys
 ## Getting Started:
 To get started with CloudState, please refer to our comprehensive documentation [here]. This includes installation instructions, usage guides, and best practices for leveraging CloudState in your cloud infrastructure.
 
-Contributing:
+## Installation
+
+Instructions on how to install your project. This section usually starts with cloning the repository and then proceeding with specific steps.
+
+### Prerequisites
+
+- Ensure Go 1.18 is installed
+
+### Build Project
+
+```
+git clone https:/github.com/Cloud-Code-AI/cloudstate.git
+cd cloudstate
+go build -o cmd/
+```
+
+### Usage
+
+```
+cmd/cloudstate -provider=aws -region=us-east-1
+```
+
+This will store all the meta data for AWS resource in `output/` directory
+
+## Contributing:
 We welcome contributions from the community! If you're interested in contributing to CloudState, please check out our contributing guidelines [here]. Whether it's adding new features, fixing bugs, or improving documentation, your help is greatly appreciated.
 
-License:
-CloudState is released under the [MIT License]. Feel free to use, modify, and distribute it as part of your projects.
+### License:
+CloudState is released under the [MIT License](/LICENSE). Feel free to use, modify, and distribute it as part of your projects.
 
-Stay Connected:
-For updates, follow us on Github [https://github.com/Cloud-Code-AI] and join our community on https://discord.gg/tEPMDTxX9K.
+### Stay Connected:
+For updates, follow us on [Github](https://github.com/Cloud-Code-AI) and join our community on [Discord](https://discord.gg/)tEPMDTxX9K.
 
