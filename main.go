@@ -36,8 +36,8 @@ func main() {
 
 func handleAWS(region, resourceType string) {
 	// Implement AWS-specific logic here
+	fmt.Printf("Handling AWS region: %s \n", region)
 	awshandler.StoreAWSData(region)
-	fmt.Printf("Handling AWS region: %s on resource: %s\n", region, resourceType)
 
 }
 
