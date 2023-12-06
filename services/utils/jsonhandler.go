@@ -2,7 +2,10 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // WriteJSONToFile writes the given data as JSON to the specified file path.
@@ -35,4 +38,38 @@ func getDir(filePath string) string {
 		return "."
 	}
 	return filePath[:lastSlashIndex]
+}
+
+func GetJSONFiles(region string) []string {
+	directory := "./output/" + region
+	filePaths := make([]string, 0)
+	files, err := ioutil.ReadDir(directory)
+	if err != nil {
+		fmt.Println("Error reading directory:", err)
+		return filePaths
+	}
+	for _, file := range files {
+		if strings.HasSuffix(file.Name(), ".json") {
+			filePaths = append(filePaths, directory+"/"+file.Name())
+		}
+	}
+	return filePaths
+}
+
+func JSONFromFile(filePath string) (interface{}, error) {
+	// Read the JSON file
+	data, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return nil, err
+	}
+
+	// Unmarshal the JSON data
+	var jsonData interface{}
+	err = json.Unmarshal(data, &jsonData)
+	if err != nil {
+		fmt.Println("Error parsing JSON:", err)
+		return nil, err
+	}
+	return jsonData, err
 }
