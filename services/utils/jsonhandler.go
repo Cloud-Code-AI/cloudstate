@@ -56,7 +56,7 @@ func GetJSONFiles(region string) []string {
 	return filePaths
 }
 
-func JSONFromFile(filePath string) (interface{}, error) {
+func ReadJSONFile(filePath string) (interface{}, error) {
 	// Read the JSON file
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {

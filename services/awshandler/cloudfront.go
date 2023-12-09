@@ -30,8 +30,10 @@ func CloudfrontListFn(sdkConfig aws.Config) {
 		path = "/cloudfront/distributions.json"
 	)
 
-	output := CloudfrontList{
-		Distributions: result.DistributionList.Items,
+	stats := addCloudfrontStats(result.DistributionList.Items)
+	output := BasicTemplate{
+		Data:  result.DistributionList.Items,
+		Stats: stats,
 	}
 
 	filepath := parentpath + sdkConfig.Region + path
@@ -41,4 +43,11 @@ func CloudfrontListFn(sdkConfig aws.Config) {
 		fmt.Println("Error writing cloudfront distribution lists")
 	}
 
+}
+
+// Add stats for cloudfront
+func addCloudfrontStats(inp []types.DistributionSummary) interface{} {
+	s := make(map[string]float64)
+	s["websites"] = float64(len(inp))
+	return s
 }
