@@ -30,8 +30,10 @@ func DynamoDBListFn(sdkConfig aws.Config) {
 		path = "/dynamodb/tables.json"
 	)
 
-	output := DynamoDBList{
-		Tables: tables.TableNames,
+	stats := addDynamoDBStats(tables.TableNames)
+	output := BasicTemplate{
+		Data:  tables.TableNames,
+		Stats: stats,
 	}
 
 	filepath := parentpath + sdkConfig.Region + path
@@ -41,4 +43,10 @@ func DynamoDBListFn(sdkConfig aws.Config) {
 		fmt.Println("Error writing lambda function lists")
 	}
 
+}
+
+func addDynamoDBStats(inp []string) interface{} {
+	s := make(map[string]float64)
+	s["tables"] = float64(len(inp))
+	return s
 }

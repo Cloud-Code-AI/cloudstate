@@ -39,8 +39,10 @@ func ListLambdaFns(sdkConfig aws.Config) {
 		path = "/lambda/functions.json"
 	)
 
-	output := lambdaList{
-		Functions: functions,
+	stats := addLambdaStats(functions)
+	output := BasicTemplate{
+		Data:  functions,
+		Stats: stats,
 	}
 
 	filepath := parentpath + sdkConfig.Region + path
@@ -50,4 +52,10 @@ func ListLambdaFns(sdkConfig aws.Config) {
 		fmt.Println("Error writing lambda function lists")
 	}
 
+}
+
+func addLambdaStats(inp []types.FunctionConfiguration) interface{} {
+	s := make(map[string]float64)
+	s["instances"] = float64(len(inp))
+	return s
 }
