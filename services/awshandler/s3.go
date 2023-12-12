@@ -32,8 +32,10 @@ func S3ListBucketss(sdkConfig aws.Config) {
 
 	// fmt.Println(result.Buckets)
 
-	output := s3Buckets{
-		Buckets: result.Buckets,
+	stats := addS3Stats(result.Buckets)
+	output := BasicTemplate{
+		Data:  result.Buckets,
+		Stats: stats,
 	}
 
 	filepath := parentpath + sdkConfig.Region + jsonpath
@@ -43,4 +45,10 @@ func S3ListBucketss(sdkConfig aws.Config) {
 		fmt.Println("Error writing S3 bucket lists")
 	}
 
+}
+
+func addS3Stats(inp []types.Bucket) interface{} {
+	s := make(map[string]float64)
+	s["buckets"] = float64(len(inp))
+	return s
 }

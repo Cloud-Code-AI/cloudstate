@@ -40,8 +40,10 @@ func ListEc2Fn(sdkConfig aws.Config) {
 		path = "/ec2/instances.json"
 	)
 
-	output := ec2List{
-		Instances: instances,
+	stats := addEc2tats(instances)
+	output := BasicTemplate{
+		Data:  instances,
+		Stats: stats,
 	}
 
 	filepath := parentpath + sdkConfig.Region + path
@@ -51,4 +53,10 @@ func ListEc2Fn(sdkConfig aws.Config) {
 		fmt.Println("Error writing lambda function lists")
 	}
 
+}
+
+func addEc2tats(inp []types.Instance) interface{} {
+	s := make(map[string]float64)
+	s["instances"] = float64(len(inp))
+	return s
 }

@@ -36,6 +36,12 @@ func getAWSRegions() []string {
 	}
 }
 
+// Creating a common interface for all the data points
+type BasicTemplate struct {
+	Stats interface{} `json:"stats"`
+	Data  interface{} `json:"data"`
+}
+
 func StoreAWSData(region string) {
 
 	var regions []string
