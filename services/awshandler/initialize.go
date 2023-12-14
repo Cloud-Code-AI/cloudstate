@@ -75,6 +75,8 @@ func StoreAWSData(region string) {
 		ListEc2Fn(sdkConfig)
 		// Get Cloudfront info
 		CloudfrontListFn(sdkConfig)
+		// Get IAM Infos
+		IAMList(sdkConfig)
 
 	}
 
