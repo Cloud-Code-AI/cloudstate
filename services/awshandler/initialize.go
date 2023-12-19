@@ -77,6 +77,8 @@ func StoreAWSData(region string) {
 		CloudfrontListFn(sdkConfig)
 		// Get IAM Infos
 		IAMList(sdkConfig)
+		// Get RDS Instance
+		ListRDSFunc(sdkConfig)
 
 	}
 
