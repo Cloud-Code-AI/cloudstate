@@ -17,7 +17,7 @@ type RDSInfo struct {
 	// AMIs      []types.Image    `json:"AMIs"`
 }
 
-// Gets all the EC2 instance for a given regions and
+// Gets all the rds instance for a given regions and
 // stores the results in output/{region}/ec2/instances.json file
 func ListRDSFunc(sdkConfig aws.Config) {
 	const maxItems = 50
