@@ -79,6 +79,8 @@ func StoreAWSData(region string) {
 		IAMList(sdkConfig)
 		// Get RDS Instance
 		ListRDSFunc(sdkConfig)
+		// Get Route53 Info
+		ListRoute53Func(sdkConfig)
 
 	}
 
