@@ -20,6 +20,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudformation v1.42.5 h1:5+m0XrCIwjjeP4f3A
 github.com/aws/aws-sdk-go-v2/service/cloudformation v1.42.5/go.mod h1:oPk8ZMctRUtGC13pOE83Zp0baZgJsmzuKm4IRR+zQOI=
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.31.0 h1:D8FSJvBDs+WLHjZiN1brxI4Vn9OmjhqlIG3mobYFsnA=
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.31.0/go.mod h1:r4dv59l0aGZaYd9kbQKGOJxo2J4dz6ZBC7Jmhdnd9xU=
+github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.32.1 h1:IQ+uLXwS5Eelikc5ZdR0P55XPo+tqWh+k872KdpAjFA=
+github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.32.1/go.mod h1:G63GKqSBLpBmO3tN1/PwM2NC65XvSd00zJWTZk202bc=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.25.3 h1:f5MV/o9V143ZKOxDh/+LLcufe4F8B3gdfg4c5Nwasyg=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.25.3/go.mod h1:p8SrrAzcuXBoLEgNI7NEw5eHFyvkvEPABS3jSE8xOZg=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.137.1 h1:J/N4ydefXQZIwKBDPtvrhxrIuP/vaaYKnAsy3bKVIvU=

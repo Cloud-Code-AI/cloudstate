@@ -57,7 +57,7 @@ Manages all the AWS resources which we fetch.
 - [ ] cloudsearchdomain
 - [ ] cloudtrail
 - [ ] cloudtraildata
-- [ ] cloudwatch
+- [x] cloudwatch
 - [ ] cloudwatchevents
 - [ ] cloudwatchlogs
 - [ ] codeartifact
