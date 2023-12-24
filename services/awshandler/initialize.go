@@ -83,6 +83,8 @@ func StoreAWSData(region string) {
 		ListRoute53Func(sdkConfig)
 		// CloudFormation Stack
 		CloudformationListFn(sdkConfig)
+		// Cloudwatch Data
+		ListCloudwatchFn(sdkConfig)
 
 	}
 

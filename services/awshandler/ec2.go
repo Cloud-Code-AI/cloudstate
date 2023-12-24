@@ -34,7 +34,7 @@ func ListEc2Fn(sdkConfig aws.Config) {
 		path = "/ec2/instances.json"
 	)
 
-	stats := addEc2tats(ec2Data)
+	stats := addEc2stats(ec2Data)
 	output := BasicTemplate{
 		Data:  ec2Data,
 		Stats: stats,
@@ -49,7 +49,7 @@ func ListEc2Fn(sdkConfig aws.Config) {
 
 }
 
-func addEc2tats(inp ec2Info) interface{} {
+func addEc2stats(inp ec2Info) interface{} {
 	s := make(map[string]float64)
 	s["instances"] = float64(len(inp.Instances))
 	s["snapshots"] = float64(len(inp.Snapshots))
