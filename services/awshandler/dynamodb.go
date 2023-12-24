@@ -17,7 +17,7 @@ type DynamoDBList struct {
 // Gets all the dynamodb tables for a given regions and
 // stores the results in output/{region}/dynamodb/tables.json file
 func DynamoDBListFn(sdkConfig aws.Config) {
-	// Create Lambda service client
+	// Create dynamodb service client
 	client := dynamodb.NewFromConfig(sdkConfig)
 
 	tables, err := client.ListTables(

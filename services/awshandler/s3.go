@@ -30,8 +30,6 @@ func S3ListBucketss(sdkConfig aws.Config) {
 		utils.ExitErrorf("Unable to list buckets, %v", err)
 	}
 
-	// fmt.Println(result.Buckets)
-
 	stats := addS3Stats(result.Buckets)
 	output := BasicTemplate{
 		Data:  result.Buckets,

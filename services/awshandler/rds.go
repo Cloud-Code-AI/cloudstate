@@ -22,7 +22,7 @@ type RDSInfo struct {
 func ListRDSFunc(sdkConfig aws.Config) {
 	const maxItems = 50
 
-	// Create Lambda service client
+	// Create RDS service client
 	client := rds.NewFromConfig(sdkConfig)
 	rdsData := RDSInfo{
 		Instances: getRDSInstances(client),
