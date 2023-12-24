@@ -7,32 +7,32 @@ import (
 
 	"github.com/Cloud-Code-AI/cloudstate/services/utils"
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/service/cloudfront"
-	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
+	"github.com/aws/aws-sdk-go-v2/service/cloudformation"
+	"github.com/aws/aws-sdk-go-v2/service/cloudformation/types"
 )
 
-type CloudfrontList struct {
-	Distributions []types.DistributionSummary `json:"distributions"`
+type CloudformationList struct {
+	stacks []types.StackSummary `json:"stacks"`
 }
 
 // Gets all the distribution of cloudfront for a given regions and
 // stores the results in output/{region}/cloudfront/distributions.json file
-func CloudfrontListFn(sdkConfig aws.Config) {
-	// Create cloudfront service client
-	client := cloudfront.NewFromConfig(sdkConfig)
+func CloudformationListFn(sdkConfig aws.Config) {
+	// Create Cloudformation service client
+	client := cloudformation.NewFromConfig(sdkConfig)
 
-	result, err := client.ListDistributions(context.TODO(), &cloudfront.ListDistributionsInput{})
+	result, err := client.ListStacks(context.TODO(), &cloudformation.ListStacksInput{})
 	if err != nil {
 		log.Printf("Couldn't list distribution. Here's why: %v\n", err)
 	}
 
 	const (
-		path = "/cloudfront/distributions.json"
+		path = "/cloudformation/stacks.json"
 	)
 
-	stats := addCloudfrontStats(result.DistributionList.Items)
+	stats := addCloudformationStats(result.StackSummaries)
 	output := BasicTemplate{
-		Data:  result.DistributionList.Items,
+		Data:  result.StackSummaries,
 		Stats: stats,
 	}
 
@@ -46,8 +46,8 @@ func CloudfrontListFn(sdkConfig aws.Config) {
 }
 
 // Add stats for cloudfront
-func addCloudfrontStats(inp []types.DistributionSummary) interface{} {
+func addCloudformationStats(inp []types.StackSummary) interface{} {
 	s := make(map[string]float64)
-	s["websites"] = float64(len(inp))
+	s["stacks"] = float64(len(inp))
 	return s
 }

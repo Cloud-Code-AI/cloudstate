@@ -20,7 +20,7 @@ type IAMInfos struct {
 // Gets all the IAM Data for a given regions and
 // stores the results in output/{region}/IAM/iam.json file
 func IAMList(sdkConfig aws.Config) {
-	// Create cloudfront service client
+	// Create IAM service client
 	IamClient := iam.NewFromConfig(sdkConfig)
 
 	userList := getIAMUsers(IamClient)

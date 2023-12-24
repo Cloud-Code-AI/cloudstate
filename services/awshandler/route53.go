@@ -21,7 +21,7 @@ type Route53Info struct {
 func ListRoute53Func(sdkConfig aws.Config) {
 	const maxItems = 50
 
-	// Create Lambda service client
+	// Create Route53 service client
 	client := route53domains.NewFromConfig(sdkConfig)
 	route53Data := Route53Info{
 		Domains: getRoute53Domains(client),

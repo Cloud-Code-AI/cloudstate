@@ -81,6 +81,8 @@ func StoreAWSData(region string) {
 		ListRDSFunc(sdkConfig)
 		// Get Route53 Info
 		ListRoute53Func(sdkConfig)
+		// CloudFormation Stack
+		CloudformationListFn(sdkConfig)
 
 	}
 

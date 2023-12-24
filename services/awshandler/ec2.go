@@ -22,7 +22,7 @@ type ec2Info struct {
 func ListEc2Fn(sdkConfig aws.Config) {
 	const maxItems = 50
 
-	// Create Lambda service client
+	// Create EC2 service client
 	client := ec2.NewFromConfig(sdkConfig)
 	ec2Data := ec2Info{
 		Instances: getEc2Instances(client),
