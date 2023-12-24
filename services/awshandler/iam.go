@@ -68,17 +68,28 @@ func getIAMUsers(IamClient *iam.Client) []types.User {
 	if err != nil {
 		log.Printf("Couldn't list users. Here's why: %v\n", err)
 	} else {
-
 		users = result.Users
+		for result.IsTruncated {
+			result, err = IamClient.ListUsers(context.TODO(), &iam.ListUsersInput{
+				MaxItems: aws.Int32(100),
+				Marker:   result.Marker,
+			})
+			if err != nil {
+				log.Printf("Couldn't list policies. Here's why: %v\n", err)
+				break
+			}
+			users = append(users, result.Users...)
+		}
 	}
 	return users
 }
 
+// List IAM policies which are created by users
 func listPolicies(IamClient *iam.Client) []types.Policy {
 	var policies []types.Policy
-	// TODO: Add Pagination to the list policies
 	result, err := IamClient.ListPolicies(context.TODO(), &iam.ListPoliciesInput{
 		MaxItems: aws.Int32(100),
+		Scope:    "Local",
 	})
 	if err != nil {
 		log.Printf("Couldn't list policies. Here's why: %v\n", err)
@@ -88,13 +99,13 @@ func listPolicies(IamClient *iam.Client) []types.Policy {
 			result, err = IamClient.ListPolicies(context.TODO(), &iam.ListPoliciesInput{
 				MaxItems: aws.Int32(100),
 				Marker:   result.Marker,
+				Scope:    "Local",
 			})
 			if err != nil {
 				log.Printf("Couldn't list policies. Here's why: %v\n", err)
 				break
 			}
 			policies = append(policies, result.Policies...)
-
 		}
 	}
 	return policies
@@ -104,12 +115,25 @@ func listPolicies(IamClient *iam.Client) []types.Policy {
 func listRoles(IamClient *iam.Client) []types.Role {
 	var roles []types.Role
 	result, err := IamClient.ListRoles(context.TODO(),
-		&iam.ListRolesInput{MaxItems: aws.Int32(100)},
+		&iam.ListRolesInput{
+			MaxItems: aws.Int32(100),
+		},
 	)
 	if err != nil {
 		log.Printf("Couldn't list roles. Here's why: %v\n", err)
 	} else {
 		roles = result.Roles
+		for result.IsTruncated {
+			result, err = IamClient.ListRoles(context.TODO(), &iam.ListRolesInput{
+				MaxItems: aws.Int32(100),
+				Marker:   result.Marker,
+			})
+			if err != nil {
+				log.Printf("Couldn't list policies. Here's why: %v\n", err)
+				break
+			}
+			roles = append(roles, result.Roles...)
+		}
 	}
 	return roles
 }
