@@ -15,8 +15,7 @@ type s3Buckets struct {
 }
 
 const (
-	jsonpath   = "/s3/buckets.json"
-	parentpath = "output/"
+	jsonpath = "/s3/buckets.json"
 )
 
 // Gets all the files from s3 for a given regions and

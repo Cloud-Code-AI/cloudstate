@@ -11,7 +11,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/iam/types"
 )
 
-type IAMInfos struct {
+// IAMData holds information about IAM users, policies, and roles.
+type iamData struct {
 	Users    []types.User   `json:"Users"`
 	Policies []types.Policy `json:"Policies"`
 	Roles    []types.Role   `json:"Roles"`
@@ -21,16 +22,16 @@ type IAMInfos struct {
 // stores the results in output/{region}/IAM/iam.json file
 func IAMList(sdkConfig aws.Config) {
 	// Create IAM service client
-	IamClient := iam.NewFromConfig(sdkConfig)
+	iamClient := iam.NewFromConfig(sdkConfig)
 
-	userList := getIAMUsers(IamClient)
-	policyList := listPolicies(IamClient)
-	rolesList := listRoles(IamClient)
+	userList := getIAMUsers(iamClient)
+	policyList := listPolicies(iamClient)
+	rolesList := listRoles(iamClient)
 	const (
 		path = "/IAM/iam.json"
 	)
 
-	IamResult := IAMInfos{
+	IamResult := iamData{
 		Users:    userList,
 		Policies: policyList,
 		Roles:    rolesList,
@@ -51,12 +52,12 @@ func IAMList(sdkConfig aws.Config) {
 }
 
 // Add stats for cloudfront
-func addIAMStats(info IAMInfos) interface{} {
-	s := make(map[string]float64)
-	s["users"] = float64(len(info.Users))
-	s["roles"] = float64(len(info.Roles))
-	s["policies"] = float64(len(info.Policies))
-	return s
+func addIAMStats(info iamData) interface{} {
+	stats := make(map[string]float64)
+	stats["users"] = float64(len(info.Users))
+	stats["roles"] = float64(len(info.Roles))
+	stats["policies"] = float64(len(info.Policies))
+	return stats
 }
 
 func getIAMUsers(IamClient *iam.Client) []types.User {

@@ -42,6 +42,8 @@ type BasicTemplate struct {
 	Data  interface{} `json:"data"`
 }
 
+const parentpath = "output/"
+
 func StoreAWSData(region string) {
 
 	var regions []string
@@ -85,6 +87,7 @@ func StoreAWSData(region string) {
 		CloudformationListFn(sdkConfig)
 		// Cloudwatch Data
 		ListCloudwatchFn(sdkConfig)
+		apigatewayList(sdkConfig)
 
 	}
 
