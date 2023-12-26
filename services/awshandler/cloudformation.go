@@ -13,22 +13,22 @@ import (
 
 // cloudformationData stores all the stack info
 type cloudformationData struct {
-	stacks []types.StackSummary `json:"stacks"`
+	Stacks []types.StackSummary `json:"stacks"`
 }
 
-// Gets all the distribution of cloudfront for a given regions and
-// stores the results in output/{region}/cloudfront/distributions.json file
+// Gets all the stacks of cloudformation for a given regions and
+// stores the results in output/{region}/cloudfromation/stacks.json file
 func CloudformationListFn(sdkConfig aws.Config) {
 	// Create Cloudformation service client
 	client := cloudformation.NewFromConfig(sdkConfig)
 
 	result, err := client.ListStacks(context.TODO(), &cloudformation.ListStacksInput{})
 	if err != nil {
-		log.Printf("Couldn't list distribution. Here's why: %v\n", err)
+		log.Printf("Couldn't list  stacks of cloudformation. Here's why: %v\n", err)
 	}
 
 	data := cloudformationData{
-		stacks: result.StackSummaries,
+		Stacks: result.StackSummaries,
 	}
 
 	const (
@@ -45,7 +45,7 @@ func CloudformationListFn(sdkConfig aws.Config) {
 
 	err = utils.WriteJSONToFile(filepath, output)
 	if err != nil {
-		fmt.Println("Error writing cloudfront distribution lists")
+		fmt.Println("Error writing stacks of cloudformation lists")
 	}
 
 }
@@ -53,6 +53,6 @@ func CloudformationListFn(sdkConfig aws.Config) {
 // Add stats for cloudformation
 func addCloudformationStats(inp cloudformationData) interface{} {
 	s := make(map[string]float64)
-	s["stacks"] = float64(len(inp.stacks))
+	s["stacks"] = float64(len(inp.Stacks))
 	return s
 }
