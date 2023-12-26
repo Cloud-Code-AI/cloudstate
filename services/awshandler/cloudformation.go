@@ -11,7 +11,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/cloudformation/types"
 )
 
-type CloudformationList struct {
+// cloudformationData stores all the stack info
+type cloudformationData struct {
 	stacks []types.StackSummary `json:"stacks"`
 }
 
@@ -26,13 +27,17 @@ func CloudformationListFn(sdkConfig aws.Config) {
 		log.Printf("Couldn't list distribution. Here's why: %v\n", err)
 	}
 
+	data := cloudformationData{
+		stacks: result.StackSummaries,
+	}
+
 	const (
 		path = "/cloudformation/stacks.json"
 	)
 
-	stats := addCloudformationStats(result.StackSummaries)
+	stats := addCloudformationStats(data)
 	output := BasicTemplate{
-		Data:  result.StackSummaries,
+		Data:  data,
 		Stats: stats,
 	}
 
@@ -45,9 +50,9 @@ func CloudformationListFn(sdkConfig aws.Config) {
 
 }
 
-// Add stats for cloudfront
-func addCloudformationStats(inp []types.StackSummary) interface{} {
+// Add stats for cloudformation
+func addCloudformationStats(inp cloudformationData) interface{} {
 	s := make(map[string]float64)
-	s["stacks"] = float64(len(inp))
+	s["stacks"] = float64(len(inp.stacks))
 	return s
 }

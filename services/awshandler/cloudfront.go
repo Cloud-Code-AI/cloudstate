@@ -11,7 +11,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
 )
 
-type CloudfrontList struct {
+// Cloudfront data stores the distribution summaries
+type cloudfrontData struct {
 	Distributions []types.DistributionSummary `json:"distributions"`
 }
 
@@ -30,9 +31,12 @@ func CloudfrontListFn(sdkConfig aws.Config) {
 		path = "/cloudfront/distributions.json"
 	)
 
-	stats := addCloudfrontStats(result.DistributionList.Items)
+	data := cloudfrontData{
+		Distributions: result.DistributionList.Items,
+	}
+	stats := addCloudfrontStats(data)
 	output := BasicTemplate{
-		Data:  result.DistributionList.Items,
+		Data:  data,
 		Stats: stats,
 	}
 
@@ -42,12 +46,11 @@ func CloudfrontListFn(sdkConfig aws.Config) {
 	if err != nil {
 		fmt.Println("Error writing cloudfront distribution lists")
 	}
-
 }
 
 // Add stats for cloudfront
-func addCloudfrontStats(inp []types.DistributionSummary) interface{} {
+func addCloudfrontStats(inp cloudfrontData) map[string]float64 {
 	s := make(map[string]float64)
-	s["websites"] = float64(len(inp))
+	s["websites"] = float64(len(inp.Distributions))
 	return s
 }
