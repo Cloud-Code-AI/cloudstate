@@ -26,6 +26,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.9 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.7.1 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.2.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.21.6
 	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.32.1
 	github.com/aws/aws-sdk-go-v2/service/iam v1.28.5
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.10.4 // indirect

@@ -87,6 +87,7 @@ func StoreAWSData(region string) {
 		CloudformationListFn(sdkConfig)
 		// Cloudwatch Data
 		ListCloudwatchFn(sdkConfig)
+		apigatewayList(sdkConfig)
 
 	}
 
