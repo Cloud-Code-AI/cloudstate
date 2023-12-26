@@ -42,6 +42,8 @@ type BasicTemplate struct {
 	Data  interface{} `json:"data"`
 }
 
+const parentpath = "output/"
+
 func StoreAWSData(region string) {
 
 	var regions []string
