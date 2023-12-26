@@ -12,7 +12,7 @@ import (
 )
 
 // IAMData holds information about IAM users, policies, and roles.
-type IAMData struct {
+type iamData struct {
 	Users    []types.User   `json:"Users"`
 	Policies []types.Policy `json:"Policies"`
 	Roles    []types.Role   `json:"Roles"`
@@ -31,7 +31,7 @@ func IAMList(sdkConfig aws.Config) {
 		path = "/IAM/iam.json"
 	)
 
-	IamResult := IAMData{
+	IamResult := iamData{
 		Users:    userList,
 		Policies: policyList,
 		Roles:    rolesList,
@@ -52,7 +52,7 @@ func IAMList(sdkConfig aws.Config) {
 }
 
 // Add stats for cloudfront
-func addIAMStats(info IAMData) interface{} {
+func addIAMStats(info iamData) interface{} {
 	stats := make(map[string]float64)
 	stats["users"] = float64(len(info.Users))
 	stats["roles"] = float64(len(info.Roles))
