@@ -88,6 +88,7 @@ func StoreAWSData(region string) {
 		// Cloudwatch Data
 		ListCloudwatchFn(sdkConfig)
 		apigatewayList(sdkConfig)
+		ListCloudwatchEventsFn(sdkConfig)
 
 	}
 

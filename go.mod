@@ -12,6 +12,7 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go-v2/service/cloudformation v1.42.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchevents v1.21.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.8.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53domains v1.20.5 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
