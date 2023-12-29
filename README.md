@@ -24,13 +24,13 @@ Instructions on how to install your project. This section usually starts with cl
 ```
 git clone https:/github.com/Cloud-Code-AI/cloudstate.git
 cd cloudstate
-go build -o cmd/
+go build cmd/main.go
 ```
 
 ### Usage
 
 ```
-cmd/cloudstate -provider=aws -region=us-east-1
+./main -provider=aws -region=us-east-1
 ```
 
 This will store all the meta data for AWS resource in `output/` directory
