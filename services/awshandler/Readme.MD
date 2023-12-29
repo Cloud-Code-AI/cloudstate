@@ -10,8 +10,8 @@ Manages all the AWS resources which we fetch.
 - [ ] amplify
 - [ ] amplifybackend
 - [ ] amplifyuibuilder
-- [ ] apigateway
-- [ ] apigatewaymanagementapi
+- [x] apigateway _[priority]_
+- [ ] ~~apigatewaymanagementapi~~
 - [ ] apigatewayv2
 - [ ] appconfig
 - [ ] appconfigdata
@@ -48,8 +48,8 @@ Manages all the AWS resources which we fetch.
 - [ ] cloud9
 - [ ] cloudcontrol
 - [ ] clouddirectory
-- [ ] cloudformation
-- [ ] cloudfront
+- [x] cloudformation _[priority]_
+- [x] cloudfront _[priority]_
 - [ ] cloudfrontkeyvaluestore
 - [ ] cloudhsm
 - [ ] cloudhsmv2
@@ -57,18 +57,18 @@ Manages all the AWS resources which we fetch.
 - [ ] cloudsearchdomain
 - [ ] cloudtrail
 - [ ] cloudtraildata
-- [x] cloudwatch
-- [ ] cloudwatchevents
-- [ ] cloudwatchlogs
-- [ ] codeartifact
-- [ ] codebuild
+- [x] cloudwatch _[priority]_
+- [ ] cloudwatchevents _[priority]_
+- [ ] cloudwatchlogs _[priority]_
+- [ ] codeartifact _[priority]_
+- [ ] codebuild _[priority]_
 - [ ] codecatalyst
-- [ ] codecommit
-- [ ] codedeploy
+- [ ] codecommit _[priority]_
+- [ ] codedeploy _[priority]_
 - [ ] codeguruprofiler
 - [ ] codegurureviewer
 - [ ] codegurusecurity
-- [ ] codepipeline
+- [ ] codepipeline _[priority]_
 - [ ] codestar
 - [ ] codestarconnections
 - [ ] codestarnotifications
@@ -79,11 +79,11 @@ Manages all the AWS resources which we fetch.
 - [ ] comprehendmedical
 - [ ] computeoptimizer
 - [ ] configservice
-- [ ] connect
-- [ ] connectcampaigns
-- [ ] connectcases
-- [ ] connectcontactlens
-- [ ] connectparticipant
+- [ ] ~~connect~~
+- [ ] ~~connectcampaigns~~
+- [ ] ~~connectcases~~
+- [ ] ~~connectcontactlens~~
+- [ ] ~~connectparticipant~~
 - [ ] controltower
 - [ ] costandusagereportservice
 - [ ] costexplorer
@@ -105,22 +105,22 @@ Manages all the AWS resources which we fetch.
 - [ ] docdb
 - [ ] docdbelastic
 - [ ] drs
-- [ ] dynamodb
+- [x] dynamodb _[priority]_
 - [ ] dynamodbstreams
-- [ ] ebs
-- [ ] ec2
+- [ ] ebs _[priority]_
+- [x] ec2 _[priority]_
 - [ ] ec2instanceconnect
-- [ ] ecr
-- [ ] ecrpublic
-- [ ] ecs
-- [ ] efs
-- [ ] eks
+- [ ] ecr _[priority]_
+- [ ] ecrpublic _[priority]_
+- [ ] ecs _[priority]_
+- [ ] efs _[priority]_
+- [ ] eks _[priority]_
 - [ ] eksauth
-- [ ] elasticache
-- [ ] elasticbeanstalk
+- [ ] elasticache _[priority]_
+- [ ] elasticbeanstalk _[priority]_
 - [ ] elasticinference
-- [ ] elasticloadbalancing
-- [ ] elasticloadbalancingv2
+- [ ] elasticloadbalancing _[priority]_
+- [ ] elasticloadbalancingv2 _[priority]_
 - [ ] elasticsearchservice
 - [ ] elastictranscoder
 - [ ] emr
@@ -151,7 +151,7 @@ Manages all the AWS resources which we fetch.
 - [ ] health
 - [ ] healthlake
 - [ ] honeycode
-- [ ] iam
+- [x] iam _[priority]_
 - [ ] identitystore
 - [ ] imagebuilder
 - [ ] inspector
@@ -184,7 +184,7 @@ Manages all the AWS resources which we fetch.
 - [ ] kendra
 - [ ] kendraranking
 - [ ] keyspaces
-- [ ] kinesis
+- [ ] kinesis _[priority]_
 - [ ] kinesisanalytics
 - [ ] kinesisanalyticsv2
 - [ ] kinesisvideo
@@ -192,9 +192,9 @@ Manages all the AWS resources which we fetch.
 - [ ] kinesisvideomedia
 - [ ] kinesisvideosignaling
 - [ ] kinesisvideowebrtcstorage
-- [ ] kms
+- [ ] kms _[priority]_
 - [ ] lakeformation
-- [ ] lambda
+- [x] lambda _[priority]_
 - [ ] launchwizard
 - [ ] lexmodelbuildingservice
 - [ ] lexmodelsv2
@@ -280,9 +280,9 @@ Manages all the AWS resources which we fetch.
 - [ ] quicksight
 - [ ] ram
 - [ ] rbin
-- [ ] rds
+- [x] rds _[priority]_
 - [ ] rdsdata
-- [ ] redshift
+- [ ] redshift _[priority]_
 - [ ] redshiftdata
 - [ ] redshiftserverless
 - [ ] rekognition
@@ -292,19 +292,19 @@ Manages all the AWS resources which we fetch.
 - [ ] resourcegroups
 - [ ] resourcegroupstaggingapi
 - [ ] rolesanywhere
-- [ ] route53
+- [x] route53 _[priority]_
 - [ ] route53domains
 - [ ] route53recoverycluster
 - [ ] route53recoverycontrolconfig
 - [ ] route53recoveryreadiness
 - [ ] route53resolver
 - [ ] rum
-- [ ] s3
-- [ ] s3control
-- [ ] s3outposts
-- [ ] sagemaker
-- [ ] sagemakera2iruntime
-- [ ] sagemakeredge
+- [x] s3
+- [ ] ~~s3control~~
+- [ ] ~~s3outposts~~
+- [ ] sagemaker _[priority]_
+- [ ] sagemakera2iruntime 
+- [ ] sagemakeredge 
 - [ ] sagemakerfeaturestoreruntime
 - [ ] sagemakergeospatial
 - [ ] sagemakermetrics
@@ -312,7 +312,7 @@ Manages all the AWS resources which we fetch.
 - [ ] savingsplans
 - [ ] scheduler
 - [ ] schemas
-- [ ] secretsmanager
+- [ ] secretsmanager _[priority]_
 - [ ] securityhub
 - [ ] securitylake
 - [ ] serverlessapplicationrepository
@@ -327,10 +327,10 @@ Manages all the AWS resources which we fetch.
 - [ ] signer
 - [ ] simspaceweaver
 - [ ] sms
-- [ ] snowball
-- [ ] snowdevicemanagement
-- [ ] sns
-- [ ] sqs
+- [ ] ~~snowball~~
+- [ ] ~~snowdevicemanagement~~
+- [ ] sns _[priority]_
+- [ ] sqs _[priority]_
 - [ ] ssm
 - [ ] ssmcontacts
 - [ ] ssmincidents
@@ -355,10 +355,10 @@ Manages all the AWS resources which we fetch.
 - [ ] trustedadvisor
 - [ ] verifiedpermissions
 - [ ] voiceid
-- [ ] vpclattice
-- [ ] waf
+- [ ] vpclattice _[priority]_
+- [ ] waf _[priority]_
 - [ ] wafregional
-- [ ] wafv2
+- [ ] wafv2 _[priority]_
 - [ ] wellarchitected
 - [ ] wisdom
 - [ ] workdocs
