@@ -58,8 +58,8 @@ Manages all the AWS resources which we fetch.
 - [ ] cloudtrail
 - [ ] cloudtraildata
 - [x] cloudwatch _[priority]_
-- [ ] cloudwatchevents _[priority]_
-- [ ] cloudwatchlogs _[priority]_
+- [x] cloudwatchevents _[priority]_
+- [x] cloudwatchlogs _[priority]_
 - [ ] codeartifact _[priority]_
 - [ ] codebuild _[priority]_
 - [ ] codecatalyst
