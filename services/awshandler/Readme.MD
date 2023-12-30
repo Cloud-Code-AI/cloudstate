@@ -121,7 +121,7 @@ Manages all the AWS resources which we fetch.
 - [ ] elasticinference
 - [ ] elasticloadbalancing _[priority]_
 - [ ] elasticloadbalancingv2 _[priority]_
-- [ ] elasticsearchservice
+- [x] elasticsearchservice _[priority]_
 - [ ] elastictranscoder
 - [ ] emr
 - [ ] emrcontainers
@@ -192,7 +192,7 @@ Manages all the AWS resources which we fetch.
 - [ ] kinesisvideomedia
 - [ ] kinesisvideosignaling
 - [ ] kinesisvideowebrtcstorage
-- [ ] kms _[priority]_
+- [x] kms _[priority]_
 - [ ] lakeformation
 - [x] lambda _[priority]_
 - [ ] launchwizard

@@ -91,6 +91,7 @@ func StoreAWSData(region string) {
 		ListCloudwatchEventsFn(sdkConfig)
 		ListCloudwatchLogsFn(sdkConfig)
 		KmsMetadata(sdkConfig)
+		elasticsearchMetadata(sdkConfig)
 
 	}
 
