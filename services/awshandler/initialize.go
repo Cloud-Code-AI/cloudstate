@@ -78,7 +78,7 @@ func StoreAWSData(region string) {
 		// Get Cloudfront info
 		CloudfrontListFn(sdkConfig)
 		// Get IAM Infos
-		IAMList(sdkConfig)
+		IamMetadata(sdkConfig)
 		// Get RDS Instance
 		ListRDSFunc(sdkConfig)
 		// Get Route53 Info
@@ -90,6 +90,7 @@ func StoreAWSData(region string) {
 		apigatewayList(sdkConfig)
 		ListCloudwatchEventsFn(sdkConfig)
 		ListCloudwatchLogsFn(sdkConfig)
+		KmsMetadata(sdkConfig)
 
 	}
 
