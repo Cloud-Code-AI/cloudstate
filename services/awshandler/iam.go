@@ -19,22 +19,19 @@ type iamData struct {
 }
 
 // Gets all the IAM Data for a given regions and
-// stores the results in output/{region}/IAM/iam.json file
-func IAMList(sdkConfig aws.Config) {
+// stores the results in output/{region}/iam/iam.json file
+func IamMetadata(sdkConfig aws.Config) {
 	// Create IAM service client
-	iamClient := iam.NewFromConfig(sdkConfig)
+	client := iam.NewFromConfig(sdkConfig)
 
-	userList := getIAMUsers(iamClient)
-	policyList := listPolicies(iamClient)
-	rolesList := listRoles(iamClient)
 	const (
-		path = "/IAM/iam.json"
+		path = "/iam/iam.json"
 	)
 
 	IamResult := iamData{
-		Users:    userList,
-		Policies: policyList,
-		Roles:    rolesList,
+		Users:    getIAMUsers(client),
+		Policies: listPolicies(client),
+		Roles:    listRoles(client),
 	}
 	stats := addIAMStats(IamResult)
 	output := BasicTemplate{
@@ -46,12 +43,12 @@ func IAMList(sdkConfig aws.Config) {
 
 	err := utils.WriteJSONToFile(filepath, output)
 	if err != nil {
-		fmt.Println("Error writing cloudfront distribution lists")
+		fmt.Println("Error writing iam data")
 	}
 
 }
 
-// Add stats for cloudfront
+// Add stats for iam
 func addIAMStats(info iamData) interface{} {
 	stats := make(map[string]float64)
 	stats["users"] = float64(len(info.Users))
@@ -67,7 +64,7 @@ func getIAMUsers(IamClient *iam.Client) []types.User {
 		MaxItems: aws.Int32(100),
 	})
 	if err != nil {
-		log.Printf("Couldn't list users. Here's why: %v\n", err)
+		log.Printf("Couldn't list iam users. Here's why: %v\n", err)
 	} else {
 		users = result.Users
 		for result.IsTruncated {
@@ -76,7 +73,7 @@ func getIAMUsers(IamClient *iam.Client) []types.User {
 				Marker:   result.Marker,
 			})
 			if err != nil {
-				log.Printf("Couldn't list policies. Here's why: %v\n", err)
+				log.Printf("Couldn't list iam users. Here's why: %v\n", err)
 				break
 			}
 			users = append(users, result.Users...)
@@ -93,7 +90,7 @@ func listPolicies(IamClient *iam.Client) []types.Policy {
 		Scope:    "Local",
 	})
 	if err != nil {
-		log.Printf("Couldn't list policies. Here's why: %v\n", err)
+		log.Printf("Couldn't list iam policies. Here's why: %v\n", err)
 	} else {
 		policies = result.Policies
 		for result.IsTruncated {
@@ -103,7 +100,7 @@ func listPolicies(IamClient *iam.Client) []types.Policy {
 				Scope:    "Local",
 			})
 			if err != nil {
-				log.Printf("Couldn't list policies. Here's why: %v\n", err)
+				log.Printf("Couldn't list iam policies. Here's why: %v\n", err)
 				break
 			}
 			policies = append(policies, result.Policies...)
@@ -121,7 +118,7 @@ func listRoles(IamClient *iam.Client) []types.Role {
 		},
 	)
 	if err != nil {
-		log.Printf("Couldn't list roles. Here's why: %v\n", err)
+		log.Printf("Couldn't list iam roles. Here's why: %v\n", err)
 	} else {
 		roles = result.Roles
 		for result.IsTruncated {
@@ -130,7 +127,7 @@ func listRoles(IamClient *iam.Client) []types.Role {
 				Marker:   result.Marker,
 			})
 			if err != nil {
-				log.Printf("Couldn't list policies. Here's why: %v\n", err)
+				log.Printf("Couldn't list iam roles. Here's why: %v\n", err)
 				break
 			}
 			roles = append(roles, result.Roles...)
