@@ -36,19 +36,19 @@ func main() {
 
 func handleAWS(region, resourceType string) {
 	// Implement AWS-specific logic here
-	fmt.Printf("Handling AWS region: %s \n", region)
+	fmt.Printf("Provider: AWS \nregion: %s \n", region)
 	awshandler.StoreAWSData(region)
 
 }
 
 func handleGCP(region, resourceType string) {
 	// Implement GCP-specific logic here
-	fmt.Printf("Handling GCP region: %s on resource: %s\n", region, resourceType)
+	fmt.Printf("Provider: GCP \n region: %s on resource: %s\n", region, resourceType)
 
 }
 
 func handleAzure(region, resourceType string) {
 	// Implement Azure-specific logic here
-	fmt.Printf("Handling Azure region: %s on resource: %s\n", region, resourceType)
+	fmt.Printf("Provider: Azure \n region: %s on resource: %s\n", region, resourceType)
 
 }
