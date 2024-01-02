@@ -12,9 +12,9 @@ import (
 )
 
 type cloudwatchInfo struct {
-	Dashboards    []types.DashboardEntry    `json:"Dashboards"`
-	Metrics       []types.Metric            `json:"Metrics"`
-	MetricStreams []types.MetricStreamEntry `json:"MetricStreams"`
+	Dashboards    []types.DashboardEntry    `json:"dashboards"`
+	Metrics       []types.Metric            `json:"metrics"`
+	MetricStreams []types.MetricStreamEntry `json:"metric_streams"`
 }
 
 // Gets all the Cloudwatch Data for a given regions and
@@ -24,7 +24,7 @@ func ListCloudwatchFn(sdkConfig aws.Config) {
 
 	// Create cloudwatch service client
 	client := cloudwatch.NewFromConfig(sdkConfig)
-	cloudwatchData := cloudwatchInfo{
+	data := cloudwatchInfo{
 		Dashboards:    getCloudwatchDashboards(client),
 		Metrics:       getCloudwatchMetrics(client),
 		MetricStreams: getCloudwatchMetricStreams(client),
@@ -34,9 +34,9 @@ func ListCloudwatchFn(sdkConfig aws.Config) {
 		path = "/cloudwatch/metrics.json"
 	)
 
-	stats := addCloudwatchStats(cloudwatchData)
+	stats := addCloudwatchStats(data)
 	output := BasicTemplate{
-		Data:  cloudwatchData,
+		Data:  data,
 		Stats: stats,
 	}
 
@@ -44,7 +44,7 @@ func ListCloudwatchFn(sdkConfig aws.Config) {
 
 	err := utils.WriteJSONToFile(filepath, output)
 	if err != nil {
-		fmt.Println("Error writing lambda function lists")
+		fmt.Println("Error writing cloudwatch data")
 	}
 
 }
@@ -58,13 +58,12 @@ func addCloudwatchStats(inp cloudwatchInfo) interface{} {
 }
 
 func getCloudwatchDashboards(client *cloudwatch.Client) []types.DashboardEntry {
-	// Retrieve the instances
+	// Retrieve the Cloudwatch dashboard
 	result, err := client.ListDashboards(context.TODO(), &cloudwatch.ListDashboardsInput{})
 	if err != nil {
-		log.Fatalf("Unable to retrieve instances, %v", err)
+		log.Fatalf("Unable to retrieve cloudwatch dashboard, %v", err)
 	}
 	var dashboards []types.DashboardEntry
-	// Process and print the instances details
 	// TODO: Add pagination updates
 	for _, dashboard := range result.DashboardEntries {
 
@@ -79,7 +78,6 @@ func getCloudwatchMetrics(client *cloudwatch.Client) []types.Metric {
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
-
 	return result.Metrics
 }
 
@@ -89,6 +87,5 @@ func getCloudwatchMetricStreams(client *cloudwatch.Client) []types.MetricStreamE
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
-
 	return result.Entries
 }

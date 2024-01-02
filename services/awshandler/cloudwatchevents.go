@@ -40,7 +40,7 @@ func ListCloudwatchEventsFn(sdkConfig aws.Config) {
 
 	err := utils.WriteJSONToFile(filepath, output)
 	if err != nil {
-		fmt.Println("Error writing lambda function lists")
+		fmt.Println("Error writing Cloudwatch events")
 	}
 
 }
@@ -52,10 +52,9 @@ func addCloudwatchEventStats(inp cloudwatcheventsInfo) interface{} {
 }
 
 func getCloudwatchEventRules(client *cloudwatchevents.Client) []types.Rule {
-	// Retrieve the tules
 	result, err := client.ListRules(context.TODO(), &cloudwatchevents.ListRulesInput{})
 	if err != nil {
-		log.Fatalf("Unable to retrieve instances, %v", err)
+		log.Fatalf("Unable to retrieve Cloudwatch Event Rules, %v", err)
 	}
 	var rules []types.Rule
 	// TODO: Add pagination updates

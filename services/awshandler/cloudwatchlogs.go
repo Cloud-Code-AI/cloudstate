@@ -40,7 +40,7 @@ func ListCloudwatchLogsFn(sdkConfig aws.Config) {
 
 	err := utils.WriteJSONToFile(filepath, output)
 	if err != nil {
-		fmt.Println("Error writing lambda function lists")
+		fmt.Println("Error writing cloudwatch logs")
 	}
 
 }
@@ -52,10 +52,9 @@ func addCloudwatchLogStats(inp cloudwatchlogsData) interface{} {
 }
 
 func getCloudwatchLogGroups(client *cloudwatchlogs.Client) []types.LogGroup {
-	// Retrieve the tules
 	result, err := client.DescribeLogGroups(context.TODO(), &cloudwatchlogs.DescribeLogGroupsInput{})
 	if err != nil {
-		log.Fatalf("Unable to retrieve instances, %v", err)
+		log.Fatalf("Unable to Cloudwatch log groups, %v", err)
 	}
 	var logGroups []types.LogGroup
 	// TODO: Add pagination updates
