@@ -56,7 +56,18 @@ func addIAMStats(info iamData) interface{} {
 	stats["users"] = float64(len(info.Users))
 	stats["roles"] = float64(len(info.Roles))
 	stats["policies"] = float64(len(info.Policies))
+	stats["unused_policies"] = statsUnusedPolicies(info.Policies)
 	return stats
+}
+
+func statsUnusedPolicies(policies []types.Policy) float64 {
+	count := 0
+	for _, policy := range policies {
+		if policy.AttachmentCount != nil && *policy.AttachmentCount == int32(0) {
+			count++
+		}
+	}
+	return float64(count)
 }
 
 func getIAMUsers(IamClient *iam.Client) []types.User {
