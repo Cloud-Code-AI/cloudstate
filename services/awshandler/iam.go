@@ -13,9 +13,10 @@ import (
 
 // IAMData holds information about IAM users, policies, and roles.
 type iamData struct {
-	Users    []types.User   `json:"Users"`
-	Policies []types.Policy `json:"Policies"`
-	Roles    []types.Role   `json:"Roles"`
+	Users      []types.User              `json:"users"`
+	Policies   []types.Policy            `json:"policies"`
+	Roles      []types.Role              `json:"roles"`
+	AccessKeys []types.AccessKeyMetadata `json:"access_keys"`
 }
 
 // Gets all the IAM Data for a given regions and
@@ -29,9 +30,10 @@ func IamMetadata(sdkConfig aws.Config) {
 	)
 
 	IamResult := iamData{
-		Users:    getIAMUsers(client),
-		Policies: listPolicies(client),
-		Roles:    listRoles(client),
+		Users:      getIAMUsers(client),
+		Policies:   listPolicies(client),
+		Roles:      listRoles(client),
+		AccessKeys: listAccessKeys(client),
 	}
 	stats := addIAMStats(IamResult)
 	output := BasicTemplate{
@@ -134,4 +136,31 @@ func listRoles(IamClient *iam.Client) []types.Role {
 		}
 	}
 	return roles
+}
+
+// Get All the Access Keys
+func listAccessKeys(client *iam.Client) []types.AccessKeyMetadata {
+	var accessKeys []types.AccessKeyMetadata
+	result, err := client.ListAccessKeys(context.TODO(),
+		&iam.ListAccessKeysInput{
+			MaxItems: aws.Int32(100),
+		},
+	)
+	if err != nil {
+		log.Printf("Couldn't list Access keys. Here's why: %v\n", err)
+	} else {
+		accessKeys = result.AccessKeyMetadata
+		for result.IsTruncated {
+			result, err = client.ListAccessKeys(context.TODO(), &iam.ListAccessKeysInput{
+				MaxItems: aws.Int32(100),
+				Marker:   result.Marker,
+			})
+			if err != nil {
+				log.Printf("Couldn't list Access keys. Here's why: %v\n", err)
+				break
+			}
+			accessKeys = append(accessKeys, result.AccessKeyMetadata...)
+		}
+	}
+	return accessKeys
 }
