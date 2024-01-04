@@ -1,12 +1,12 @@
+  [![Go Report Card](https://goreportcard.com/badge/github.com/Cloud-Code-AI/cloudstate)](https://goreportcard.com/report/github.com/Cloud-Code-AI/cloudstate) 
+
 # CloudState
 CloudState is an innovative open-source tool designed to empower developers, system administrators, and cloud architects. It provides a detailed, real-time snapshot of all resources deployed across your cloud environments, generating an accurate and up-to-date state file. This tool is your go-to solution for cloud resource management, offering clarity and control over your cloud infrastructure.
 
 ## Key Features:
-- Resource Visualization: CloudState scans your cloud environment, presenting a clear and comprehensive view of all deployed resources.
 - State File Generation: Automatically generates a state file that reflects your current cloud resource setup, facilitating better infrastructure management and planning.
 - Multi-Cloud Support: Designed with versatility in mind, CloudState seamlessly integrates with various cloud providers, ensuring broad compatibility and utility.
 - Real-Time Updates: Stay informed with real-time updates, ensuring that your state files always reflect the latest changes in your cloud environment.
-- Easy Integration: CloudState is built to easily integrate into your existing cloud management workflow, enhancing your resource monitoring and decision-making processes.
 
 ## Getting Started:
 To get started with CloudState, please refer to our comprehensive documentation [here]. This includes installation instructions, usage guides, and best practices for leveraging CloudState in your cloud infrastructure.
