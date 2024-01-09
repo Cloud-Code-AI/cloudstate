@@ -94,6 +94,7 @@ func StoreAWSData(region string) {
 		elasticsearchMetadata(sdkConfig)
 		ElasticCahceMetaData(sdkConfig)
 		ECRMetaData(sdkConfig)
+		codebuildMetadata(sdkConfig)
 
 	}
 
