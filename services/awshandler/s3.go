@@ -20,7 +20,7 @@ const (
 
 // Gets all the files from s3 for a given regions and
 // stores the results in output/s3/buckets.json file
-func S3ListBucketss(sdkConfig aws.Config) {
+func S3ListBucketss(sdkConfig aws.Config, parentpath string) {
 	// Create S3 service client
 	client := s3.NewFromConfig(sdkConfig)
 

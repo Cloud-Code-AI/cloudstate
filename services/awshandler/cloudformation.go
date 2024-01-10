@@ -18,7 +18,7 @@ type cloudformationData struct {
 
 // Gets all the stacks of cloudformation for a given regions and
 // stores the results in output/{region}/cloudfromation/stacks.json file
-func CloudformationListFn(sdkConfig aws.Config) {
+func CloudformationListFn(sdkConfig aws.Config, parentpath string) {
 	// Create Cloudformation service client
 	client := cloudformation.NewFromConfig(sdkConfig)
 

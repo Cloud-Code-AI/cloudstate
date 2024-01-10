@@ -18,7 +18,7 @@ type Route53Info struct {
 
 // Gets all the Route53 Domains for a given regions and
 // stores the results in output/{region}/route53/instances.json file
-func ListRoute53Func(sdkConfig aws.Config) {
+func ListRoute53Func(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create Route53 service client

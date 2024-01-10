@@ -21,7 +21,7 @@ type iamData struct {
 
 // Gets all the IAM Data for a given regions and
 // stores the results in output/{region}/iam/iam.json file
-func IamMetadata(sdkConfig aws.Config) {
+func IamMetadata(sdkConfig aws.Config, parentpath string) {
 	// Create IAM service client
 	client := iam.NewFromConfig(sdkConfig)
 

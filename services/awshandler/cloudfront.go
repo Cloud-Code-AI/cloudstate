@@ -18,7 +18,7 @@ type cloudfrontData struct {
 
 // Gets all the distribution of cloudfront for a given regions and
 // stores the results in output/{region}/cloudfront/distributions.json file
-func CloudfrontListFn(sdkConfig aws.Config) {
+func CloudfrontListFn(sdkConfig aws.Config, parentpath string) {
 	// Create cloudfront service client
 	client := cloudfront.NewFromConfig(sdkConfig)
 
