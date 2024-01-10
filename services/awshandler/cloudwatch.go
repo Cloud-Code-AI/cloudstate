@@ -19,7 +19,7 @@ type cloudwatchInfo struct {
 
 // Gets all the Cloudwatch Data for a given regions and
 // stores the results in output/{region}/cloudwatch/metrics.json file
-func ListCloudwatchFn(sdkConfig aws.Config) {
+func ListCloudwatchFn(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create cloudwatch service client

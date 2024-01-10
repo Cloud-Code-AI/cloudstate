@@ -19,7 +19,7 @@ type RDSInfo struct {
 
 // Gets all the rds instance for a given regions and
 // stores the results in output/{region}/ec2/instances.json file
-func ListRDSFunc(sdkConfig aws.Config) {
+func ListRDSFunc(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create RDS service client

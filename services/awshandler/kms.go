@@ -18,7 +18,7 @@ type kmsData struct {
 
 // Gets all the KMS Data for a given regions and
 // stores the results in output/{region}/KMS/keys.json file
-func KmsMetadata(sdkConfig aws.Config) {
+func KmsMetadata(sdkConfig aws.Config, parentpath string) {
 	// Create KMS service client
 	client := kms.NewFromConfig(sdkConfig)
 

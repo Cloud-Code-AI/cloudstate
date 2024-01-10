@@ -18,7 +18,7 @@ type apigatewayData struct {
 
 // Gets all the API Gateways for a given regions and
 // stores the results in output/{region}/apigateway/data.json file
-func apigatewayList(sdkConfig aws.Config) {
+func apigatewayList(sdkConfig aws.Config, parentpath string) {
 	// Create API Gateway service client
 	client := apigateway.NewFromConfig(sdkConfig)
 

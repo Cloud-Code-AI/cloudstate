@@ -17,7 +17,7 @@ type ecrData struct {
 
 // Gets all the ecr Data for a given regions and
 // stores the results in output/{region}/ecr/data.json file
-func ECRMetaData(sdkConfig aws.Config) {
+func ECRMetaData(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create ecr service client

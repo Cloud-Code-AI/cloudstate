@@ -3,6 +3,7 @@ package awshandler
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 )
@@ -42,8 +43,6 @@ type BasicTemplate struct {
 	Data  interface{} `json:"data"`
 }
 
-const parentpath = "output/"
-
 func StoreAWSData(region string) {
 
 	var regions []string
@@ -55,6 +54,8 @@ func StoreAWSData(region string) {
 	} else {
 		regions = append(regions, region)
 	}
+
+	parentpath := "output/" + time.Now().Format("2006-01-02T15:04:05") + "/"
 
 	for _, region := range regions {
 		sdkConfig, err := config.LoadDefaultConfig(
@@ -68,33 +69,33 @@ func StoreAWSData(region string) {
 		}
 		fmt.Printf("Storing data for region : %s\n", region)
 		// Get all the S3 bucket data
-		S3ListBucketss(sdkConfig)
+		S3ListBucketss(sdkConfig, parentpath)
 		// Get all the lambda functions
-		ListLambdaFns(sdkConfig)
+		ListLambdaFns(sdkConfig, parentpath)
 		// Get all dynamodb tables
-		DynamoDBListFn(sdkConfig)
+		DynamoDBListFn(sdkConfig, parentpath)
 		// Get EC2 Instance info
-		ListEc2Fn(sdkConfig)
+		ListEc2Fn(sdkConfig, parentpath)
 		// Get Cloudfront info
-		CloudfrontListFn(sdkConfig)
+		CloudfrontListFn(sdkConfig, parentpath)
 		// Get IAM Infos
-		IamMetadata(sdkConfig)
+		IamMetadata(sdkConfig, parentpath)
 		// Get RDS Instance
-		ListRDSFunc(sdkConfig)
+		ListRDSFunc(sdkConfig, parentpath)
 		// Get Route53 Info
-		ListRoute53Func(sdkConfig)
+		ListRoute53Func(sdkConfig, parentpath)
 		// CloudFormation Stack
-		CloudformationListFn(sdkConfig)
+		CloudformationListFn(sdkConfig, parentpath)
 		// Cloudwatch Data
-		ListCloudwatchFn(sdkConfig)
-		apigatewayList(sdkConfig)
-		ListCloudwatchEventsFn(sdkConfig)
-		ListCloudwatchLogsFn(sdkConfig)
-		KmsMetadata(sdkConfig)
-		elasticsearchMetadata(sdkConfig)
-		ElasticCahceMetaData(sdkConfig)
-		ECRMetaData(sdkConfig)
-		codebuildMetadata(sdkConfig)
+		ListCloudwatchFn(sdkConfig, parentpath)
+		apigatewayList(sdkConfig, parentpath)
+		ListCloudwatchEventsFn(sdkConfig, parentpath)
+		ListCloudwatchLogsFn(sdkConfig, parentpath)
+		KmsMetadata(sdkConfig, parentpath)
+		elasticsearchMetadata(sdkConfig, parentpath)
+		ElasticCahceMetaData(sdkConfig, parentpath)
+		ECRMetaData(sdkConfig, parentpath)
+		codebuildMetadata(sdkConfig, parentpath)
 
 	}
 

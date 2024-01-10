@@ -19,7 +19,7 @@ type ec2Info struct {
 
 // Gets all the EC2 instance for a given regions and
 // stores the results in output/{region}/ec2/instances.json file
-func ListEc2Fn(sdkConfig aws.Config) {
+func ListEc2Fn(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create EC2 service client

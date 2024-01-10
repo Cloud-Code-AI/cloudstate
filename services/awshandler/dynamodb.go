@@ -16,7 +16,7 @@ type DynamoDBList struct {
 
 // Gets all the dynamodb tables for a given regions and
 // stores the results in output/{region}/dynamodb/tables.json file
-func DynamoDBListFn(sdkConfig aws.Config) {
+func DynamoDBListFn(sdkConfig aws.Config, parentpath string) {
 	// Create dynamodb service client
 	client := dynamodb.NewFromConfig(sdkConfig)
 

@@ -19,7 +19,7 @@ type elasticsearchData struct {
 
 // Gets all the Elastic Search Data for a given regions and
 // stores the results in output/{region}/ess/keys.json file
-func elasticsearchMetadata(sdkConfig aws.Config) {
+func elasticsearchMetadata(sdkConfig aws.Config, parentpath string) {
 	// Create Elasticsearch service client
 	client := elasticsearchservice.NewFromConfig(sdkConfig)
 

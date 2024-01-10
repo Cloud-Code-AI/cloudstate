@@ -18,7 +18,7 @@ type elasticacheData struct {
 
 // Gets all the elasticache Data for a given regions and
 // stores the results in output/{region}/elasticache/data.json file
-func ElasticCahceMetaData(sdkConfig aws.Config) {
+func ElasticCahceMetaData(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create elasticache service client

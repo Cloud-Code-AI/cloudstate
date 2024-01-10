@@ -22,7 +22,7 @@ type codebuildData struct {
 
 // Gets all the Cloud Build Data for a given regions and
 // stores the results in output/{region}/codebuild/data.json file
-func codebuildMetadata(sdkConfig aws.Config) {
+func codebuildMetadata(sdkConfig aws.Config, parentpath string) {
 	// Create CodeBuild service client
 	client := codebuild.NewFromConfig(sdkConfig)
 

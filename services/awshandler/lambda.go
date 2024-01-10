@@ -18,7 +18,7 @@ type lambdaList struct {
 
 // Gets all the lambda functions for a given regions and
 // stores the results in output/{region}/lambda/functions.json file
-func ListLambdaFns(sdkConfig aws.Config) {
+func ListLambdaFns(sdkConfig aws.Config, parentpath string) {
 
 	// Create Lambda service client
 	client := lambda.NewFromConfig(sdkConfig)

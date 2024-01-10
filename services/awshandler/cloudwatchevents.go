@@ -17,7 +17,7 @@ type cloudwatcheventsInfo struct {
 
 // Gets all the Cloudwatch Event Data for a given regions and
 // stores the results in output/{region}/cloudwatch/events.json file
-func ListCloudwatchEventsFn(sdkConfig aws.Config) {
+func ListCloudwatchEventsFn(sdkConfig aws.Config, parentpath string) {
 	const maxItems = 50
 
 	// Create cloudwatch events service client
