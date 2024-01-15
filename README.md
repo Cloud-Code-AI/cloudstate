@@ -29,8 +29,14 @@ go build cmd/main.go
 
 ### Usage
 
+To Gather all resources
 ```
-./main -provider=aws -region=us-east-1
+./main gather -provider=aws -region=us-east-1 --resource=vm
+```
+
+To Generate report:
+```
+./main report
 ```
 
 This will store all the meta data for AWS resource in `output/` directory
