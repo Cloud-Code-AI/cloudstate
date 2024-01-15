@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -72,4 +73,30 @@ func ReadJSONFile(filePath string) (interface{}, error) {
 		return nil, err
 	}
 	return jsonData, err
+}
+
+func collectFilePaths(path string, info os.FileInfo, err error, files *[]string) error {
+	if err != nil {
+		return err
+	}
+	if !info.IsDir() {
+		*files = append(*files, path)
+	}
+	return nil
+}
+
+func visit(root string, path string, f os.FileInfo) (interface{}, error) {
+	var files []string
+	fileerr := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		return collectFilePaths(root, info, err, &files)
+	})
+
+	if fileerr != nil {
+		fmt.Printf("Error walking the path %q: %v\n", root, fileerr)
+		return nil, fileerr
+	}
+	if !f.IsDir() {
+		fmt.Printf("Visited file or path: %q\n", path)
+	}
+	return files, nil
 }
