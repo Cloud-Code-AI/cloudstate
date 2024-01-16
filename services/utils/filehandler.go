@@ -6,7 +6,9 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
+	"time"
 )
 
 // WriteJSONToFile writes the given data as JSON to the specified file path.
@@ -99,4 +101,30 @@ func visit(root string, path string, f os.FileInfo) (interface{}, error) {
 		fmt.Printf("Visited file or path: %q\n", path)
 	}
 	return files, nil
+}
+
+func getMostRecentDirectory(root string) (string, error) {
+	var dirs []os.FileInfo
+	entries, err := ioutil.ReadDir(root)
+	if err != nil {
+		return "", err
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() {
+			dirs = append(dirs, entry)
+		}
+	}
+
+	sort.Slice(dirs, func(i, j int) bool {
+		ti, _ := time.Parse("2006-01-02T15:04:05", dirs[i].Name())
+		tj, _ := time.Parse("2006-01-02T15:04:05", dirs[j].Name())
+		return ti.After(tj)
+	})
+
+	if len(dirs) > 0 {
+		return filepath.Join(root, dirs[0].Name()), nil
+	}
+
+	return "", fmt.Errorf("no directories found")
 }
