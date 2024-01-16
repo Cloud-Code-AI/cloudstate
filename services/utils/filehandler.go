@@ -68,7 +68,7 @@ func ReadJSONFile(filePath string) (interface{}, error) {
 	}
 
 	// Unmarshal the JSON data
-	var jsonData interface{}
+	var jsonData map[string]interface{}
 	err = json.Unmarshal(data, &jsonData)
 	if err != nil {
 		fmt.Println("Error parsing JSON:", err)
