@@ -19,7 +19,7 @@ func GenerateAWSReport() {
 	}
 
 	// Compiles and list all the stats in a single file.
-	allStats := make(map[string]map[string]interface{})
+	allStats := make(map[string]interface{})
 	var serviceName string
 	err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -31,7 +31,7 @@ func GenerateAWSReport() {
 			if err != nil {
 				return err
 			}
-			serviceName = strings.Split(path, "/")[4]
+			serviceName = strings.Split(path, "/")[3]
 
 			// Print the entire data for debugging
 			fmt.Printf("Service name %v, data is %v, \n", serviceName, data["stats"])
@@ -40,6 +40,7 @@ func GenerateAWSReport() {
 			stats, ok := data["stats"].(map[string]interface{})
 			if !ok {
 				// handle the error: data["stats"] is not of type map[string]int
+				fmt.Printf("Service name %v, data is %v, \n", serviceName, data["stats"])
 				fmt.Printf("Error in parsing stats data for service %v\n", serviceName)
 			} else {
 				allStats[serviceName] = stats
@@ -53,7 +54,9 @@ func GenerateAWSReport() {
 		return
 	}
 
-	err = utils.WriteJSONToFile(fmt.Sprint(dir)+"/report.json", allStats)
+	utils.PrintNested(allStats, "", 0)
+
+	err = utils.WriteJSONToFile("output/aws/report.json", allStats)
 	if err != nil {
 		fmt.Println("Failed to Write the report file to json")
 	}
