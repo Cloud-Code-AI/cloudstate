@@ -3,7 +3,6 @@ package awshandler
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 )
@@ -55,7 +54,8 @@ func StoreAWSData(region string) {
 		regions = append(regions, region)
 	}
 
-	parentpath := "output/aws/" + time.Now().Format("2006-01-02T15:04:05") + "/"
+	// parentpath := "output/aws/" + time.Now().Format("2006-01-02T15:04:05") + "/"
+	parentpath := "output/aws/"
 
 	for _, region := range regions {
 		sdkConfig, err := config.LoadDefaultConfig(

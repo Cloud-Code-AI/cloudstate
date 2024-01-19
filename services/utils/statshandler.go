@@ -1,19 +1,34 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+	"strings"
+)
 
-func AuditStat(region string) {
-	// for a given region, get basic audit stats and
-	// store them for dashboard publishing
-	filePaths := GetJSONFiles(region)
-
-	for _, filepath := range filePaths {
-		jsonData, err := ReadJSONFile(filepath)
-		if err != nil {
-			fmt.Println("Error reading json file: ", filepath)
+func PrintNested(data interface{}, prefix string, level int) {
+	indent := "    " // 4 spaces
+	if reflect.TypeOf(data).Kind() == reflect.Map {
+		for k, v := range data.(map[string]interface{}) {
+			valueType := reflect.TypeOf(v).Kind()
+			keyString := fmt.Sprintf("%-30s", prefix+strings.Repeat(indent, level)+k)
+			if valueType == reflect.Map || valueType == reflect.Slice {
+				fmt.Println(keyString, "(nested)")
+				PrintNested(v, prefix, level+1)
+			} else {
+				fmt.Println(keyString, fmt.Sprintf("%-20v", v))
+			}
 		}
-		fmt.Println(jsonData)
-		// TODO: Read the json files and merge them to create a specific json content
+	} else if reflect.TypeOf(data).Kind() == reflect.Slice {
+		for i, v := range data.([]interface{}) {
+			valueType := reflect.TypeOf(v).Kind()
+			keyString := fmt.Sprintf("%-30s", prefix+strings.Repeat(indent, level)+fmt.Sprintf("[%d]", i))
+			if valueType == reflect.Map || valueType == reflect.Slice {
+				fmt.Println(keyString, "(nested)")
+				PrintNested(v, prefix, level+1)
+			} else {
+				fmt.Println(keyString, fmt.Sprintf("%-20v", v))
+			}
+		}
 	}
-
 }
