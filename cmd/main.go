@@ -32,6 +32,7 @@ func main() {
 		gatherCmd.Parse(os.Args[2:])
 		gather()
 	case "report":
+		cloudProvider = reportCmd.String("provider", "", "The cloud provider to interact with (e.g., 'aws', 'gcp', 'azure')")
 		reportCmd.Parse(os.Args[2:])
 		generateReport()
 	default:
@@ -62,7 +63,17 @@ func gather() {
 }
 
 func generateReport() {
-	fmt.Println("Report generation not implemented yet")
+	// Handle the cloud region based on the input
+	switch *cloudProvider {
+	case "aws":
+		awshandler.GenerateAWSReport()
+	case "gcp":
+		fmt.Println("Report generation not implemented yet for gcp")
+	case "azure":
+		fmt.Println("Report generation not implemented yet for azure")
+	default:
+		fmt.Println("Unsupported cloud provider")
+	}
 }
 
 func handleAWS(region, resourceType string) {

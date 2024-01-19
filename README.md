@@ -33,13 +33,16 @@ To Gather all resources
 ```
 ./main gather -provider=aws -region=us-east-1 --resource=vm
 ```
+This will store all the meta data for AWS resource in `output/` directory
+
 
 To Generate report:
+
+Note: Make sure to run gather command first as report runs on local meta data gathered from cloud resources
 ```
-./main report
+./main report --provider=aws
 ```
 
-This will store all the meta data for AWS resource in `output/` directory
 
 ## Contributing:
 We welcome contributions from the community! If you're interested in contributing to CloudState, please check out our contributing guidelines [here]. Whether it's adding new features, fixing bugs, or improving documentation, your help is greatly appreciated.
