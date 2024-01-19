@@ -59,7 +59,7 @@ func GetJSONFiles(region string) []string {
 	return filePaths
 }
 
-func ReadJSONFile(filePath string) (interface{}, error) {
+func ReadJSONFile(filePath string) (map[string]interface{}, error) {
 	// Read the JSON file
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
@@ -103,7 +103,7 @@ func visit(root string, path string, f os.FileInfo) (interface{}, error) {
 	return files, nil
 }
 
-func getMostRecentDirectory(root string) (string, error) {
+func GetMostRecentDirectory(root string) (string, error) {
 	var dirs []os.FileInfo
 	entries, err := ioutil.ReadDir(root)
 	if err != nil {
