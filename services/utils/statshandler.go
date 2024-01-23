@@ -8,26 +8,34 @@ import (
 
 func PrintNested(data interface{}, prefix string, level int) {
 	indent := "    " // 4 spaces
-	if reflect.TypeOf(data).Kind() == reflect.Map {
+	if level == 0 {
+		// Assuming top-level is map[string]map[string]interface{}
+		for region, services := range data.(map[string]map[string]interface{}) {
+			fmt.Println(prefix + strings.Repeat(indent, level) + region)
+			PrintNested(services, prefix, level+1)
+		}
+	} else if reflect.TypeOf(data).Kind() == reflect.Map {
+		// Handle nested maps
 		for k, v := range data.(map[string]interface{}) {
 			valueType := reflect.TypeOf(v).Kind()
 			keyString := fmt.Sprintf("%-30s", prefix+strings.Repeat(indent, level)+k)
 			if valueType == reflect.Map || valueType == reflect.Slice {
-				fmt.Println(keyString, "(nested)")
+				fmt.Println(keyString)
 				PrintNested(v, prefix, level+1)
 			} else {
-				fmt.Println(keyString, fmt.Sprintf("%-20v", v))
+				fmt.Printf("%s %-20v \n", keyString, v)
 			}
 		}
 	} else if reflect.TypeOf(data).Kind() == reflect.Slice {
-		for i, v := range data.([]interface{}) {
+		// Handle slices
+		for _, v := range data.([]interface{}) {
 			valueType := reflect.TypeOf(v).Kind()
-			keyString := fmt.Sprintf("%-30s", prefix+strings.Repeat(indent, level)+fmt.Sprintf("[%d]", i))
+			keyString := fmt.Sprintf("%-30s", prefix+strings.Repeat(indent, level))
 			if valueType == reflect.Map || valueType == reflect.Slice {
-				fmt.Println(keyString, "(nested)")
+				fmt.Println(keyString)
 				PrintNested(v, prefix, level+1)
 			} else {
-				fmt.Println(keyString, fmt.Sprintf("%-20v", v))
+				fmt.Printf("%s %-20v \n", keyString, v)
 			}
 		}
 	}
