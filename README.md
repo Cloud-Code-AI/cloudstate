@@ -43,6 +43,78 @@ Note: Make sure to run gather command first as report runs on local meta data ga
 ./main report --provider=aws
 ```
 
+You should see an output like this:
+```
+us-east-1
+    kms                       
+        keys                   2                    
+    rds                       
+        instances              0                    
+    route53                   
+        domains                0                    
+    lambda                    
+        functions              4                    
+        layers                 0                    
+    s3                        
+        buckets                9                    
+    cloudfront                
+        websites               2                    
+    ec2                       
+        amis                   0                    
+        instances              0                    
+        snapshots              0                    
+    elasticache               
+        cache_clusters         0                    
+        snapshots              0                    
+    codebuild                 
+        builds                 0                    
+        enviroment_images      5                    
+        projects               0                    
+    dynamodb                  
+        tables                 2                    
+    ess                       
+        domains                0                    
+    ecr                       
+        repositories           0                    
+    iam                       
+        policies               29                   
+        roles                  37                   
+        unused_policies        3                    
+        users                  5                    
+    apigateway                
+        stacks                 1                    
+    cloudformation            
+        stacks                 0                    
+    cloudwatch                
+        metrics                272                  
+        dashboards             0                    
+        metric_streams         0                    
+us-east-2
+    cloudfront                
+        websites               2                    
+    dynamodb                  
+        tables                 3                    
+    ec2                       
+        amis                   0                    
+        instances              1                    
+        snapshots              0                    
+    iam                       
+        policies               29                   
+        roles                  38                   
+        unused_policies        3                    
+        users                  5                    
+    lambda                    
+        functions              5                    
+        layers                 1                    
+    rds                       
+        instances              1                    
+    s3                        
+        buckets                9
+```
+
+
+And you can also find your results at `output/aws_report.json`
+
 
 ## Contributing:
 We welcome contributions from the community! If you're interested in contributing to CloudState, please check out our contributing guidelines [here]. Whether it's adding new features, fixing bugs, or improving documentation, your help is greatly appreciated.
