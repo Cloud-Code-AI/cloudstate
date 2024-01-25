@@ -11,14 +11,14 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2/service/cloudformation v1.42.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchevents v1.21.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/codebuild v1.27.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.24.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/elasticsearchservice v1.24.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudformation v1.42.5
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchevents v1.21.6
+	github.com/aws/aws-sdk-go-v2/service/codebuild v1.27.0
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.24.6
+	github.com/aws/aws-sdk-go-v2/service/elasticsearchservice v1.24.6
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.8.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.27.7 // indirect
-	github.com/aws/aws-sdk-go-v2/service/route53domains v1.20.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.27.7
+	github.com/aws/aws-sdk-go-v2/service/route53domains v1.20.5
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 )
 
