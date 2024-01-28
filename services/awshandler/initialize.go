@@ -99,6 +99,7 @@ func StoreAWSData(region string) {
 		ElasticCahceMetaData(sdkConfig, parentpath)
 		ECRMetaData(sdkConfig, parentpath)
 		codebuildMetadata(sdkConfig, parentpath)
+		ListVpcFn(sdkConfig, parentpath)
 
 	}
 
