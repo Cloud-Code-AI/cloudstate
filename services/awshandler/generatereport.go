@@ -34,8 +34,9 @@ func GenerateAWSReport(outFolder string) {
 			if len(pathParts) < 4 {
 				return fmt.Errorf("unexpected path format: %s", path)
 			}
-			serviceName := pathParts[3]
-			regionName := pathParts[2]
+			path_len := len(pathParts)
+			serviceName := pathParts[path_len-2]
+			regionName := pathParts[path_len-3]
 
 			// Print the entire data for debugging
 			fmt.Printf("Service name %v, data is %v, \n", serviceName, data["stats"])
@@ -63,7 +64,7 @@ func GenerateAWSReport(outFolder string) {
 	// Print and write the report
 	utils.PrintNested(regionStats, "", 0)
 
-	err = utils.WriteJSONToFile("output/aws_report.json", regionStats)
+	err = utils.WriteJSONToFile(outFolder+"/aws_report.json", regionStats)
 	if err != nil {
 		fmt.Println("Failed to Write the report file to json")
 		fmt.Println(err)
