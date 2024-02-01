@@ -43,7 +43,7 @@ type BasicTemplate struct {
 	Data  interface{} `json:"data"`
 }
 
-func StoreAWSData(region string) {
+func StoreAWSData(region string, outFolder string) {
 
 	var regions []string
 
@@ -56,7 +56,10 @@ func StoreAWSData(region string) {
 	}
 
 	// parentpath := "output/aws/" + time.Now().Format("2006-01-02T15:04:05") + "/"
-	parentpath := "output/aws/"
+	if outFolder == "" {
+		outFolder = "output"
+	}
+	parentpath := outFolder + "/aws/"
 
 	for _, region := range regions {
 		sdkConfig, err := config.LoadDefaultConfig(

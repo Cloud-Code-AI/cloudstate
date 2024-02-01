@@ -9,9 +9,13 @@ import (
 	"github.com/Cloud-Code-AI/cloudstate/services/utils"
 )
 
-func GenerateAWSReport() {
+func GenerateAWSReport(outFolder string) {
 	// Get the most recent data stored for a provider
-	dir := "./output/aws/"
+
+	if outFolder == "" {
+		outFolder = "output"
+	}
+	dir := outFolder + "/aws/"
 
 	// Compiles and list all the stats in a single file.
 	regionStats := make(map[string]map[string]interface{})
