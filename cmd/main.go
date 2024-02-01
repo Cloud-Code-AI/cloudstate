@@ -12,6 +12,7 @@ var (
 	cloudProvider *string
 	resourceType  *string
 	region        *string
+	outputFolder  *string
 )
 
 func main() {
@@ -29,10 +30,12 @@ func main() {
 		cloudProvider = gatherCmd.String("provider", "", "The cloud provider to interact with (e.g., 'aws', 'gcp', 'azure')")
 		resourceType = gatherCmd.String("resource", "", "The type of resource to fetch (e.g., 'vm', 'storage', 'network')")
 		region = gatherCmd.String("region", "", "The region for which the data should be fetched (e.g 'us-east-1', 'ap-south-1')")
+		outputFolder = gatherCmd.String("out-folder", "", "Specific folder in which data should be stored. Default: ./output/")
 		gatherCmd.Parse(os.Args[2:])
 		gather()
 	case "report":
 		cloudProvider = reportCmd.String("provider", "", "The cloud provider to interact with (e.g., 'aws', 'gcp', 'azure')")
+		outputFolder = reportCmd.String("out-folder", "", "Specific folder in which data should be stored. Default: ./output/")
 		reportCmd.Parse(os.Args[2:])
 		generateReport()
 	default:
@@ -52,11 +55,11 @@ func gather() {
 	// Handle the cloud region based on the input
 	switch *cloudProvider {
 	case "aws":
-		handleAWS(*region, *resourceType)
+		handleAWS(*region, *resourceType, *outputFolder)
 	case "gcp":
-		handleGCP(*region, *resourceType)
+		handleGCP(*region, *resourceType, *outputFolder)
 	case "azure":
-		handleAzure(*region, *resourceType)
+		handleAzure(*region, *resourceType, *outputFolder)
 	default:
 		fmt.Println("Unsupported cloud provider")
 	}
@@ -66,7 +69,7 @@ func generateReport() {
 	// Handle the cloud region based on the input
 	switch *cloudProvider {
 	case "aws":
-		awshandler.GenerateAWSReport()
+		awshandler.GenerateAWSReport(*outputFolder)
 	case "gcp":
 		fmt.Println("Report generation not implemented yet for gcp")
 	case "azure":
@@ -76,20 +79,20 @@ func generateReport() {
 	}
 }
 
-func handleAWS(region, resourceType string) {
+func handleAWS(region, resourceType string, outFolder string) {
 	// Implement AWS-specific logic here
 	fmt.Printf("Provider: AWS \nregion: %s \n", region)
-	awshandler.StoreAWSData(region)
+	awshandler.StoreAWSData(region, outFolder)
 
 }
 
-func handleGCP(region, resourceType string) {
+func handleGCP(region, resourceType string, outFolder string) {
 	// Implement GCP-specific logic here
 	fmt.Printf("Provider: GCP \n region: %s on resource: %s\n", region, resourceType)
 
 }
 
-func handleAzure(region, resourceType string) {
+func handleAzure(region, resourceType string, outFolder string) {
 	// Implement Azure-specific logic here
 	fmt.Printf("Provider: Azure \n region: %s on resource: %s\n", region, resourceType)
 
