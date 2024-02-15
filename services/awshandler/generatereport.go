@@ -19,6 +19,7 @@ func GenerateAWSReport(outFolder string) {
 
 	// Compiles and list all the stats in a single file.
 	regionStats := make(map[string]map[string]interface{})
+	allData := make(map[string]map[string]interface{})
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -50,8 +51,10 @@ func GenerateAWSReport(outFolder string) {
 			// Group stats by region
 			if _, exists := regionStats[regionName]; !exists {
 				regionStats[regionName] = make(map[string]interface{})
+				allData[regionName] = make(map[string]interface{})
 			}
 			regionStats[regionName][serviceName] = stats
+			allData[regionName][serviceName] = data
 		}
 
 		return nil
@@ -64,9 +67,17 @@ func GenerateAWSReport(outFolder string) {
 	// Print and write the report
 	utils.PrintNested(regionStats, "", 0)
 
+	// Storing report data
 	err = utils.WriteJSONToFile(outFolder+"/aws_report.json", regionStats)
 	if err != nil {
 		fmt.Println("Failed to Write the report file to json")
+		fmt.Println(err)
+	}
+
+	// Storing report data
+	err = utils.WriteJSONToFile(outFolder+"/aws_metadata.json", allData)
+	if err != nil {
+		fmt.Println("Failed to Write the all data file to json")
 		fmt.Println(err)
 	}
 
