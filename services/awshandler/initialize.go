@@ -103,6 +103,7 @@ func StoreAWSData(region string, outFolder string) {
 		ECRMetaData(sdkConfig, parentpath)
 		codebuildMetadata(sdkConfig, parentpath)
 		ListVpcFn(sdkConfig, parentpath)
+		ListAutoscalingFn(sdkConfig, parentpath)
 
 	}
 
