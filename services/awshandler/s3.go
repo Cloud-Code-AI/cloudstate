@@ -39,7 +39,7 @@ func S3ListBucketss(sdkConfig aws.Config, parentpath string) {
 		Stats: stats,
 	}
 
-	filepath := parentpath + sdkConfig.Region + jsonpath
+	filepath := parentpath + "global" + jsonpath
 
 	err = utils.WriteJSONToFile(filepath, output)
 	if err != nil {
