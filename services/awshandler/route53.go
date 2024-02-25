@@ -37,7 +37,7 @@ func ListRoute53Func(sdkConfig aws.Config, parentpath string) {
 		Stats: stats,
 	}
 
-	filepath := parentpath + sdkConfig.Region + path
+	filepath := parentpath + "global" + path
 
 	err := utils.WriteJSONToFile(filepath, output)
 	if err != nil {

@@ -77,6 +77,7 @@ func StoreAWSData(region string, outFolder string) {
 		if region == "us-east-1" {
 			S3ListBucketss(sdkConfig, parentpath)
 			ListRoute53Func(sdkConfig, parentpath)
+			IamMetadata(sdkConfig, parentpath)
 		}
 		// Get all the lambda functions
 		ListLambdaFns(sdkConfig, parentpath)
@@ -86,8 +87,6 @@ func StoreAWSData(region string, outFolder string) {
 		ListEc2Fn(sdkConfig, parentpath)
 		// Get Cloudfront info
 		CloudfrontListFn(sdkConfig, parentpath)
-		// Get IAM Infos
-		IamMetadata(sdkConfig, parentpath)
 		// Get RDS Instance
 		ListRDSFunc(sdkConfig, parentpath)
 		// CloudFormation Stack
