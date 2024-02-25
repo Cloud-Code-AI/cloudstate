@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/Cloud-Code-AI/cloudstate/services/awshandler"
+	"github.com/Cloud-Code-AI/cloudstate/services/gcphandler"
 )
 
 var (
@@ -89,6 +90,7 @@ func handleAWS(region, resourceType string, outFolder string) {
 func handleGCP(region, resourceType string, outFolder string) {
 	// Implement GCP-specific logic here
 	fmt.Printf("Provider: GCP \n region: %s on resource: %s\n", region, resourceType)
+	gcphandler.StoreGoogleData(region, outFolder)
 
 }
 

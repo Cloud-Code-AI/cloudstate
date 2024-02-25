@@ -17,7 +17,7 @@ Instructions on how to install your project. This section usually starts with cl
 
 ### Prerequisites
 
-- Ensure Go 1.18 is installed
+- Ensure Go 1.22 is installed
 
 ### Build Project
 
