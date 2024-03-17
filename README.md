@@ -1,6 +1,12 @@
-  [![Go Report Card](https://goreportcard.com/badge/github.com/Cloud-Code-AI/cloudstate)](https://goreportcard.com/report/github.com/Cloud-Code-AI/cloudstate) 
+  # CloudState
+  <p align="left">
+  <a href="https://goreportcard.com/report/github.com/Cloud-Code-AI/cloudstate"><img src="https://goreportcard.com/badge/github.com/Cloud-Code-AI/cloudstate" alt="Go Report Card"></a>
+  <a href="https://github.com/Cloud-Code-AI"><img src="https://img.shields.io/github/stars/Cloud-Code-AI/cloudstate" alt="Github Stars"></a>
+  <a href="https://github.com/Cloud-Code-AI/cloudstate/pulse"><img src="https://img.shields.io/github/commit-activity/w/Cloud-Code-AI/cloudstate" alt="Commits-per-week"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-purple.svg" alt="License: MIT"></a>
+</p>
 
-# CloudState
+
 CloudState is an innovative open-source tool designed to empower developers, system administrators, and cloud architects. It provides a detailed, real-time snapshot of all resources deployed across your cloud environments, generating an accurate and up-to-date state file. This tool is your go-to solution for cloud resource management, offering clarity and control over your cloud infrastructure.
 
 ## Key Features:
